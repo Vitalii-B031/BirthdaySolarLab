@@ -1,17 +1,25 @@
+using Birthday.DAL;
+
 namespace Birthday.BLL;
 
 public class BirthdayService : IBirthdayService
 {
+    private IBirthdayRepository repository;
+
+    public BirthdayService(IBirthdayRepository repository)
+    {
+        this.repository = repository;
+    }
     public BirthdayPerson[] GetAll()
     {
-        return Enumerable.Range(1, 3).Select(i => new BirthdayPerson
+        return repository.GetAll().Select(bp => new BirthdayPerson
         {
-            Id = i,
-            Birthday = DateTime.UtcNow.AddDays(i),
-            Name = "Вася"+i,
-            PhotoPuth = i.ToString(),
-            TelegramUserName = "Вася"+2*i,
-            TelegramChatId = i
+            Birthday = bp.Birthday,
+            Name = bp.Name,
+            Id = bp.Id,
+            TelegramUserName = bp.TelegramUserName,
+            TelegramChatId = bp.TelegramChatId,
+            PhotoPuth = bp.PhotoPuth,
         }).ToArray();
     }
 }

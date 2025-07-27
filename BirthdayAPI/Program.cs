@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 builder.Services.AddTransient<IBirthdayService,BirthdayService>();
+builder.Services.AddTransient<IBirthdayRepository, BirthdayRepository>();
 var connectionString = "Host=localhost;Port=5432;Database=birthdaydb;Username=birthdayuser;Password=birthdaypass";
 builder.Services.AddDbContext<BirthdayDbContext>(options => options.UseNpgsql(connectionString));
 var app = builder.Build();
