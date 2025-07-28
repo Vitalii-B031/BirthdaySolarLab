@@ -17,5 +17,10 @@ public class BirthdayRepository : IBirthdayRepository
     {
         return dbContext.BirthdayPersons.Find(id);
     }
-    
+
+    public void Add(BirthdayPerson birthdayPerson)
+    {
+        dbContext.BirthdayPersons.Add(birthdayPerson);
+        dbContext.SaveChanges();
+    }
 }

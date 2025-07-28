@@ -4,5 +4,6 @@ public interface IBirthdayRepository
 {
     BirthdayPerson[] GetAll();
     BirthdayPerson GetById(int id);
+    void Add(BirthdayPerson birthdayPerson);
 }
 

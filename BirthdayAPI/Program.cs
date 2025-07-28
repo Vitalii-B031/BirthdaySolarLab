@@ -1,6 +1,7 @@
 using Birthday.BLL;
 using Birthday.DAL;
 using Microsoft.EntityFrameworkCore;
+using BirthdayPerson = Birthday.BLL.BirthdayPerson;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,5 +26,6 @@ app.UseHttpsRedirection();
 
 app.MapGet("/birthdays/{id}",  (IBirthdayService birthdayService, int id) => birthdayService.GetById(id));
 app.MapGet("/birthdays", (IBirthdayService birthdayService) => birthdayService.GetAll());
+app.MapPost("/birthdays", (IBirthdayService birthdayService, BirthdayPerson person) => birthdayService.Add(person));
 app.Run();
 

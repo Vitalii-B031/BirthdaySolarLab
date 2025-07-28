@@ -40,4 +40,18 @@ public class BirthdayService : IBirthdayService
             PhotoPuth = person.PhotoPuth,
         };
     }
+
+    public void Add(BirthdayPerson birthdayPerson)
+    {
+       var person = new Birthday.DAL.BirthdayPerson
+        {
+            Birthday = birthdayPerson.Birthday,
+            Name = birthdayPerson.Name,
+            Id = birthdayPerson.Id,
+            TelegramUserName = birthdayPerson.TelegramUserName,
+            TelegramChatId = birthdayPerson.TelegramChatId,
+            PhotoPuth = birthdayPerson.PhotoPuth,
+        };
+        repository.Add(person);
+    }
 }
