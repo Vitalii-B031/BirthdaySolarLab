@@ -23,4 +23,21 @@ public class BirthdayRepository : IBirthdayRepository
         dbContext.BirthdayPersons.Add(birthdayPerson);
         dbContext.SaveChanges();
     }
+
+    public void Update(BirthdayPerson birthdayPerson)
+    {
+        dbContext.BirthdayPersons.Update(birthdayPerson);
+        dbContext.SaveChanges();
+    }
+
+    public void Delete(int id)
+    {
+        var person = dbContext.BirthdayPersons.Find(id);
+        if (person == null)
+        {
+            return;
+        }
+        dbContext.BirthdayPersons.Remove(person);
+        dbContext.SaveChanges();
+    }
 }

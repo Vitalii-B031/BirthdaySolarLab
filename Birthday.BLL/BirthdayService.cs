@@ -54,4 +54,24 @@ public class BirthdayService : IBirthdayService
         };
         repository.Add(person);
     }
+
+    public void Update(BirthdayPerson birthdayPerson)
+    {
+        var person = new Birthday.DAL.BirthdayPerson
+        {
+            Birthday = birthdayPerson.Birthday,
+            Name = birthdayPerson.Name,
+            Id = birthdayPerson.Id,
+            TelegramUserName = birthdayPerson.TelegramUserName,
+            TelegramChatId = birthdayPerson.TelegramChatId,
+            PhotoPuth = birthdayPerson.PhotoPuth,
+        };
+        repository.Update(person);
+    }
+
+    public void Delete(int id)
+    {
+        repository.Delete(id);
+    }
+    
 }

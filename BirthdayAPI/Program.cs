@@ -27,5 +27,8 @@ app.UseHttpsRedirection();
 app.MapGet("/birthdays/{id}",  (IBirthdayService birthdayService, int id) => birthdayService.GetById(id));
 app.MapGet("/birthdays", (IBirthdayService birthdayService) => birthdayService.GetAll());
 app.MapPost("/birthdays", (IBirthdayService birthdayService, BirthdayPerson person) => birthdayService.Add(person));
+app.MapPut("/birthdays", (IBirthdayService birthdayService, BirthdayPerson person) => birthdayService.Update(person));
+app.MapDelete("/birthdays/{id}",
+    (IBirthdayService birthdayService, int id) => birthdayService.Delete(id));
 app.Run();
 
