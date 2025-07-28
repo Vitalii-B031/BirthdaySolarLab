@@ -73,5 +73,11 @@ public class BirthdayService : IBirthdayService
     {
         repository.Delete(id);
     }
-    
+
+    public BirthdayPerson[] GetUpcoming()
+    {
+        var persons = GetAll();
+        var today = DateTime.Now;
+        return persons.Where(p => p.Birthday.Month == today.Month && p.Birthday.Day == today.Day).ToArray();
+    }
 }

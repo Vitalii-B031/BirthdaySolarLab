@@ -7,4 +7,5 @@ public interface IBirthdayService
     void Add(BirthdayPerson birthdayPerson);
     void Update(BirthdayPerson birthdayPerson);
     void Delete(int id);
+    BirthdayPerson[] GetUpcoming();
 }
