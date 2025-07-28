@@ -12,5 +12,10 @@ public class BirthdayRepository : IBirthdayRepository
     {
         return dbContext.BirthdayPersons.ToArray();
     }
+
+    public BirthdayPerson GetById(int id)
+    {
+        return dbContext.BirthdayPersons.Find(id);
+    }
     
 }

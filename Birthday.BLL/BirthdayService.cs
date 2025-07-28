@@ -22,4 +22,22 @@ public class BirthdayService : IBirthdayService
             PhotoPuth = bp.PhotoPuth,
         }).ToArray();
     }
+
+    public BirthdayPerson GetById(int id)
+    {
+        var person = repository.GetById(id);
+        if (person == null)
+        {
+            return null;
+        }
+        return new BirthdayPerson
+        {
+            Birthday = person.Birthday,
+            Name = person.Name,
+            Id = person.Id,
+            TelegramUserName = person.TelegramUserName,
+            TelegramChatId = person.TelegramChatId,
+            PhotoPuth = person.PhotoPuth,
+        };
+    }
 }

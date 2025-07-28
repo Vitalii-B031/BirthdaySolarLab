@@ -23,7 +23,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
-app.MapGet("/test", (IBirthdayService birthdayService) => birthdayService.GetAll());
+app.MapGet("/birthdays/{id}",  (IBirthdayService birthdayService, int id) => birthdayService.GetById(id));
+app.MapGet("/birthdays", (IBirthdayService birthdayService) => birthdayService.GetAll());
 app.Run();
 
