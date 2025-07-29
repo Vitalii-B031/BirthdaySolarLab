@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace Birthday.DAL;
 
 public class BirthdayRepository : IBirthdayRepository
@@ -39,5 +41,13 @@ public class BirthdayRepository : IBirthdayRepository
         }
         dbContext.BirthdayPersons.Remove(person);
         dbContext.SaveChanges();
+    }
+
+    public BirthdayPerson GetByTelegramUserName(string telegramUsername)
+    {
+        var person = dbContext.BirthdayPersons.AsNoTracking()
+            .FirstOrDefault(x => x.TelegramUserName == telegramUsername);
+
+        return person ?? null;
     }
 }

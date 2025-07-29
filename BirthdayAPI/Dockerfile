@@ -1,5 +1,7 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
-USER $APP_UID
+﻿#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+USER app
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
@@ -8,7 +10,10 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["BirthdayAPI/BirthdayAPI.csproj", "BirthdayAPI/"]
-RUN dotnet restore "BirthdayAPI/BirthdayAPI.csproj"
+COPY ["Birthday.BLL/Birthday.BLL.csproj", "Birthday.BLL/"]
+COPY ["Birthday.DAL/Birthday.DAL.csproj", "Birthday.DAL/"]
+COPY ["Birthday.Telegram/Birthday.Telegram.csproj", "Birthday.Telegram/"]
+RUN dotnet restore "./BirthdayAPI/BirthdayAPI.csproj"
 COPY . .
 WORKDIR "/src/BirthdayAPI"
 RUN dotnet build "./BirthdayAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
@@ -20,4 +25,4 @@ RUN dotnet publish "./BirthdayAPI.csproj" -c $BUILD_CONFIGURATION -o /app/publis
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "BirthdayAPI.dll"]
+ENTRYPOINT ["dotnet", "BirthdayAPI.dll"] 

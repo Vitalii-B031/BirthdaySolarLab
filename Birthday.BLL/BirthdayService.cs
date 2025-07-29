@@ -12,61 +12,23 @@ public class BirthdayService : IBirthdayService
     }
     public BirthdayPerson[] GetAll()
     {
-        return repository.GetAll().Select(bp => new BirthdayPerson
-        {
-            Birthday = bp.Birthday,
-            Name = bp.Name,
-            Id = bp.Id,
-            TelegramUserName = bp.TelegramUserName,
-            TelegramChatId = bp.TelegramChatId,
-            PhotoPuth = bp.PhotoPuth,
-        }).ToArray();
+        return repository.GetAll().Select(Map).ToArray();
     }
 
     public BirthdayPerson GetById(int id)
     {
         var person = repository.GetById(id);
-        if (person == null)
-        {
-            return null;
-        }
-        return new BirthdayPerson
-        {
-            Birthday = person.Birthday,
-            Name = person.Name,
-            Id = person.Id,
-            TelegramUserName = person.TelegramUserName,
-            TelegramChatId = person.TelegramChatId,
-            PhotoPuth = person.PhotoPuth,
-        };
+        return Map(person);
     }
 
     public void Add(BirthdayPerson birthdayPerson)
     {
-       var person = new Birthday.DAL.BirthdayPerson
-        {
-            Birthday = birthdayPerson.Birthday,
-            Name = birthdayPerson.Name,
-            Id = birthdayPerson.Id,
-            TelegramUserName = birthdayPerson.TelegramUserName,
-            TelegramChatId = birthdayPerson.TelegramChatId,
-            PhotoPuth = birthdayPerson.PhotoPuth,
-        };
-        repository.Add(person);
+        repository.Add(Map(birthdayPerson));
     }
 
     public void Update(BirthdayPerson birthdayPerson)
     {
-        var person = new Birthday.DAL.BirthdayPerson
-        {
-            Birthday = birthdayPerson.Birthday,
-            Name = birthdayPerson.Name,
-            Id = birthdayPerson.Id,
-            TelegramUserName = birthdayPerson.TelegramUserName,
-            TelegramChatId = birthdayPerson.TelegramChatId,
-            PhotoPuth = birthdayPerson.PhotoPuth,
-        };
-        repository.Update(person);
+        repository.Update(Map(birthdayPerson));
     }
 
     public void Delete(int id)
@@ -79,5 +41,38 @@ public class BirthdayService : IBirthdayService
         var persons = GetAll();
         var today = DateTime.Now;
         return persons.Where(p => p.Birthday.Month == today.Month && p.Birthday.Day == today.Day).ToArray();
+    }
+
+    public BirthdayPerson GetPersonByTelegramUserName(string telegramUsername)
+    {
+        var person = repository.GetByTelegramUserName(telegramUsername);
+
+        return person == null ? null : Map(person);
+    }
+
+    private DAL.BirthdayPerson Map(BLL.BirthdayPerson birthdayPerson)
+    {
+        return new DAL.BirthdayPerson
+        {
+            Birthday = birthdayPerson.Birthday,
+            Name = birthdayPerson.Name,
+            Id = birthdayPerson.Id,
+            TelegramUserName = birthdayPerson.TelegramUserName,
+            TelegramChatId = birthdayPerson.TelegramChatId,
+            PhotoPuth = birthdayPerson.PhotoPuth,
+        };
+    }
+    
+    private BLL.BirthdayPerson Map(DAL.BirthdayPerson birthdayPerson)
+    {
+        return new BLL.BirthdayPerson
+        {
+            Birthday = birthdayPerson.Birthday,
+            Name = birthdayPerson.Name,
+            Id = birthdayPerson.Id,
+            TelegramUserName = birthdayPerson.TelegramUserName,
+            TelegramChatId = birthdayPerson.TelegramChatId,
+            PhotoPuth = birthdayPerson.PhotoPuth,
+        };
     }
 }
