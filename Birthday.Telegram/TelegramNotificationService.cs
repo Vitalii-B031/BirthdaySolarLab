@@ -66,7 +66,7 @@ public class TelegramNotificationService : BackgroundService
                 if (birthdays.Any())
                 {
                     Console.WriteLine($"Found {birthdays.Length} birthdays today.");
-                    foreach (var person in birthdays)
+                    foreach (var person in birthdayService.GetAll())
                     {
                         var message = $"Сегодня день рождения у {person.Name}!\nTelegram: {person.TelegramUserName}";
                         var url = $"https://api.telegram.org/bot{botToken}/sendMessage";

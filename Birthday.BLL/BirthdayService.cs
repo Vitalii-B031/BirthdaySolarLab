@@ -21,9 +21,9 @@ public class BirthdayService : IBirthdayService
         return Map(person);
     }
 
-    public void Add(BirthdayPerson birthdayPerson)
+    public BirthdayPerson Add(BirthdayPerson birthdayPerson)
     {
-        repository.Add(Map(birthdayPerson));
+        return Map(repository.Add(Map(birthdayPerson)));
     }
 
     public void Update(BirthdayPerson birthdayPerson)
@@ -59,7 +59,7 @@ public class BirthdayService : IBirthdayService
             Id = birthdayPerson.Id,
             TelegramUserName = birthdayPerson.TelegramUserName,
             TelegramChatId = birthdayPerson.TelegramChatId,
-            PhotoPuth = birthdayPerson.PhotoPuth,
+            PhotoPath = birthdayPerson.PhotoPath,
         };
     }
     
@@ -72,7 +72,7 @@ public class BirthdayService : IBirthdayService
             Id = birthdayPerson.Id,
             TelegramUserName = birthdayPerson.TelegramUserName,
             TelegramChatId = birthdayPerson.TelegramChatId,
-            PhotoPuth = birthdayPerson.PhotoPuth,
+            PhotoPath = birthdayPerson.PhotoPath,
         };
     }
 }
