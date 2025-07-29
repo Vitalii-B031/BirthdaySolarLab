@@ -1,5 +1,6 @@
 using Birthday.BLL;
 using Birthday.DAL;
+using Birthday.Telegram;
 using Microsoft.EntityFrameworkCore;
 using BirthdayPerson = Birthday.BLL.BirthdayPerson;
 
@@ -10,6 +11,7 @@ builder.Services.AddTransient<IBirthdayService,BirthdayService>();
 builder.Services.AddTransient<IBirthdayRepository, BirthdayRepository>();
 var connectionString = "Host=localhost;Port=5432;Database=birthdaydb;Username=birthdayuser;Password=birthdaypass";
 builder.Services.AddDbContext<BirthdayDbContext>(options => options.UseNpgsql(connectionString));
+builder.Services.AddHostedService<TelegramNotificationService>();
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {

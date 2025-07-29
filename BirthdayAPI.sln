@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Birthday.BLL", "Birthday.BL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Birthday.DAL", "Birthday.DAL\Birthday.DAL.csproj", "{38A201EE-AB0C-441E-88E8-24A16D5D41EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Birthday.Telegram", "Birthday.Telegram\Birthday.Telegram.csproj", "{37DA70EE-C94E-45E6-910B-E1D632D585E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{38A201EE-AB0C-441E-88E8-24A16D5D41EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38A201EE-AB0C-441E-88E8-24A16D5D41EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38A201EE-AB0C-441E-88E8-24A16D5D41EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37DA70EE-C94E-45E6-910B-E1D632D585E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37DA70EE-C94E-45E6-910B-E1D632D585E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37DA70EE-C94E-45E6-910B-E1D632D585E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37DA70EE-C94E-45E6-910B-E1D632D585E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

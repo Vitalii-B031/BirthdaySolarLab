@@ -26,6 +26,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Birthday.BLL\Birthday.BLL.csproj" />
       <ProjectReference Include="..\Birthday.DAL\Birthday.DAL.csproj" />
+      <ProjectReference Include="..\Birthday.Telegram\Birthday.Telegram.csproj" />
     </ItemGroup>
 
 </Project>
